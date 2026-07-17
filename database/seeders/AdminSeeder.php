@@ -21,15 +21,5 @@ class AdminSeeder extends Seeder
                 'email_verified_at' => now(),
             ]
         );
-
-        User::updateOrCreate(
-            ['email' => 'perangkat@birowo.desa.id'],
-            [
-                'name' => 'Perangkat Desa',
-                'password' => bcrypt('perangkat123'),
-                'role' => 'admin',
-                'email_verified_at' => now(),
-            ]
-        );
     }
 }
