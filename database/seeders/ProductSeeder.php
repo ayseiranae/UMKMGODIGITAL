@@ -12,6 +12,5 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        // Kosongkan untuk production. Data produk akan ditambahkan manual via Admin Panel.
     }
 }
