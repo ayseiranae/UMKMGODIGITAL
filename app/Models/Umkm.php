@@ -20,6 +20,7 @@ class Umkm extends Model
         'owner_name',
         'description',
         'address',
+        'maps_url',
         'phone',
         'whatsapp',
         'photo',

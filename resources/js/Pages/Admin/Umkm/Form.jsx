@@ -8,6 +8,7 @@ export default function UmkmForm({ umkm, contactTypes }) {
         owner_name: umkm?.owner_name || '',
         description: umkm?.description || '',
         address: umkm?.address || '',
+        maps_url: umkm?.maps_url || '',
         phone: umkm?.phone || '',
         whatsapp: umkm?.whatsapp || '',
         photo: null,
@@ -70,6 +71,10 @@ export default function UmkmForm({ umkm, contactTypes }) {
 
                     <FormField label="Alamat *" error={errors.address}>
                         <input type="text" value={data.address} onChange={(e) => setData('address', e.target.value)} style={inputStyle} placeholder="Alamat lengkap" />
+                    </FormField>
+
+                    <FormField label="Link Google Maps (Opsional)" error={errors.maps_url}>
+                        <input type="url" value={data.maps_url} onChange={(e) => setData('maps_url', e.target.value)} style={inputStyle} placeholder="https://maps.google.com/..." />
                     </FormField>
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>

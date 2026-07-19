@@ -28,7 +28,14 @@ export default function UmkmShow({ umkm }) {
                         <div style={{ flex: 1 }}>
                             <h1 style={{ fontSize: 28, fontWeight: 900, marginBottom: 4 }}>{umkm.name}</h1>
                             <p style={{ fontSize: 14, color: '#8892b0', marginBottom: 12 }}>
-                                👤 {umkm.owner_name} • 📍 {umkm.address}
+                                👤 {umkm.owner_name} • 📍 {' '}
+                                {umkm.maps_url ? (
+                                    <a href={umkm.maps_url} target="_blank" rel="noreferrer" style={{ color: '#4361ee', textDecoration: 'none' }}>
+                                        {umkm.address} (Lihat di Maps)
+                                    </a>
+                                ) : (
+                                    umkm.address
+                                )}
                             </p>
                             <p style={{ fontSize: 14, color: '#a8b2d1', lineHeight: 1.7, maxWidth: 700 }}>
                                 {umkm.description}
