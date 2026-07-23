@@ -3,7 +3,8 @@ import AdminLayout from '@/Layouts/AdminLayout';
 
 export default function UmkmForm({ umkm, contactTypes }) {
     const isEdit = !!umkm;
-    const { data, setData, post, put, processing, errors } = useForm({
+    const { data, setData, post, processing, errors } = useForm({
+        _method: isEdit ? 'PUT' : 'POST',
         name: umkm?.name || '',
         owner_name: umkm?.owner_name || '',
         description: umkm?.description || '',
@@ -19,10 +20,7 @@ export default function UmkmForm({ umkm, contactTypes }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (isEdit) {
-            post(`/admin/umkm/${umkm.id}`, {
-                _method: 'PUT',
-                forceFormData: true,
-            });
+            post(`/admin/umkm/${umkm.id}`, { forceFormData: true });
         } else {
             post('/admin/umkm', { forceFormData: true });
         }
@@ -51,12 +49,12 @@ export default function UmkmForm({ umkm, contactTypes }) {
                     ← Kembali
                 </Link>
 
-                <form onSubmit={handleSubmit} style={{ background: '#fff', borderRadius: 16, padding: 32, boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
+                <form onSubmit={handleSubmit} className="admin-form-card" style={{ background: '#fff', borderRadius: 16, padding: 32, boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
                     <h3 style={{ fontSize: 18, fontWeight: 800, marginBottom: 24, color: '#1a1a2e' }}>
                         {isEdit ? 'Edit UMKM' : 'Tambah UMKM Baru'}
                     </h3>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+                    <div className="admin-grid-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
                         <FormField label="Nama UMKM *" error={errors.name}>
                             <input type="text" value={data.name} onChange={(e) => setData('name', e.target.value)} style={inputStyle} placeholder="Contoh: Dapur Bu Sari" />
                         </FormField>
@@ -102,9 +100,11 @@ export default function UmkmForm({ umkm, contactTypes }) {
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
                             <h4 style={{ fontSize: 15, fontWeight: 700, color: '#1a1a2e' }}>Link Kontak & Marketplace</h4>
                             <button type="button" onClick={addContactLink} style={{
-                                background: '#f0f4ff', color: '#4361ee', border: 'none',
+                                background: 'linear-gradient(135deg, #22577a 0%, #38a3a5 100%)',
+                                color: '#fff', border: 'none',
                                 padding: '8px 16px', borderRadius: 8, fontSize: 13,
-                                fontWeight: 600, cursor: 'pointer',
+                                fontWeight: 700, cursor: 'pointer',
+                                boxShadow: '0 2px 6px rgba(34,87,122,0.25)',
                             }}>
                                 + Tambah Link
                             </button>
@@ -126,7 +126,7 @@ export default function UmkmForm({ umkm, contactTypes }) {
                                 <input type="url" value={link.url} onChange={(e) => updateContactLink(index, 'url', e.target.value)}
                                     placeholder="https://..." style={{ ...inputStyle, marginBottom: 0 }} />
                                 <button type="button" onClick={() => removeContactLink(index)} style={{
-                                    background: '#fee', color: '#e94560', border: 'none',
+                                    background: '#fee', color: '#dc2626', border: 'none',
                                     padding: '8px 12px', borderRadius: 8, cursor: 'pointer', fontSize: 14,
                                 }}>✕</button>
                             </div>
@@ -161,7 +161,7 @@ function FormField({ label, error, children }) {
                 {label}
             </label>
             {children}
-            {error && <div style={{ fontSize: 12, color: '#e94560', marginTop: 4 }}>{error}</div>}
+            {error && <div style={{ fontSize: 12, color: '#dc2626', marginTop: 4 }}>{error}</div>}
         </div>
     );
 }

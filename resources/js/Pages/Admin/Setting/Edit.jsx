@@ -21,7 +21,7 @@ export default function SettingEdit({ settings }) {
             <Head title="Pengaturan Website" />
 
             <div style={{ maxWidth: 800 }}>
-                <form onSubmit={handleSubmit} style={{ background: '#fff', borderRadius: 16, padding: 32, boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
+                <form onSubmit={handleSubmit} className="admin-form-card" style={{ background: '#fff', borderRadius: 16, padding: 32, boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
                     <h3 style={{ fontSize: 18, fontWeight: 800, marginBottom: 8, color: '#1a1a2e' }}>
                         Pengaturan Informasi & Kontak Desa
                     </h3>
@@ -36,7 +36,7 @@ export default function SettingEdit({ settings }) {
                         </InputGroup>
                     </FormField>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+                    <div className="admin-grid-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
                         {/* WhatsApp Kontak Desa */}
                         <FormField label="WhatsApp Kontak Desa" error={errors.wa_desa} helpText="Masukkan nomor WA (Contoh: 081234567890)">
                             <InputGroup prefix="wa.me/">
@@ -52,7 +52,7 @@ export default function SettingEdit({ settings }) {
                         </FormField>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+                    <div className="admin-grid-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
                         {/* Facebook Desa */}
                         <FormField label="Facebook Desa" error={errors.facebook} helpText="Masukkan username/nama halaman FB (Contoh: desabirowo)">
                             <InputGroup prefix="facebook.com/">
@@ -97,7 +97,7 @@ function FormField({ label, error, helpText, children }) {
             </label>
             {children}
             {helpText && <div style={{ fontSize: 11, color: '#888', marginTop: 4 }}>{helpText}</div>}
-            {error && <div style={{ fontSize: 12, color: '#e94560', marginTop: 4 }}>{error}</div>}
+            {error && <div style={{ fontSize: 12, color: '#dc2626', marginTop: 4 }}>{error}</div>}
         </div>
     );
 }
