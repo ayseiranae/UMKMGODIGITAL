@@ -8,29 +8,28 @@ export default function UmkmShow({ umkm }) {
 
             {/* Header */}
             <section style={{
-                background: 'linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%)',
+                background: 'linear-gradient(135deg, #22577a 0%, #38a3a5 100%)',
                 padding: '50px 24px 60px',
                 color: '#fff',
             }}>
                 <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-                    <Link href="/umkm" style={{ color: '#8892b0', textDecoration: 'none', fontSize: 13, marginBottom: 16, display: 'inline-block' }}>
+                    <Link href="/umkm" style={{ color: '#c7f9cc', textDecoration: 'none', fontSize: 13, marginBottom: 16, display: 'inline-block', fontWeight: 600 }}>
                         ← Kembali ke Daftar UMKM
                     </Link>
                     <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start', flexWrap: 'wrap' }}>
-                        <div style={{
-                            width: 80, height: 80, borderRadius: 16,
-                            background: 'rgba(233,69,96,0.2)',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            fontSize: 40, flexShrink: 0,
-                        }}>
-                            🏪
-                        </div>
                         <div style={{ flex: 1 }}>
                             <h1 style={{ fontSize: 28, fontWeight: 900, marginBottom: 4 }}>{umkm.name}</h1>
-                            <p style={{ fontSize: 14, color: '#8892b0', marginBottom: 12 }}>
-                                👤 {umkm.owner_name} • 📍 {umkm.address}
+                            <p style={{ fontSize: 14, color: '#c7f9cc', marginBottom: 12 }}>
+                                {umkm.owner_name} • {' '}
+                                {umkm.maps_url ? (
+                                    <a href={umkm.maps_url} target="_blank" rel="noreferrer" style={{ color: '#80ed99', textDecoration: 'none', fontWeight: 600 }}>
+                                        {umkm.address} (Lihat di Maps)
+                                    </a>
+                                ) : (
+                                    umkm.address
+                                )}
                             </p>
-                            <p style={{ fontSize: 14, color: '#a8b2d1', lineHeight: 1.7, maxWidth: 700 }}>
+                            <p style={{ fontSize: 14, color: '#ffffff', lineHeight: 1.7, maxWidth: 700, opacity: 0.95 }}>
                                 {umkm.description}
                             </p>
                         </div>
@@ -42,13 +41,12 @@ export default function UmkmShow({ umkm }) {
                             {umkm.contact_links.map((link) => (
                                 <a key={link.id} href={link.url} target="_blank" rel="noreferrer" style={{
                                     display: 'flex', alignItems: 'center', gap: 6,
-                                    background: 'rgba(255,255,255,0.1)',
-                                    border: '1px solid rgba(255,255,255,0.15)',
+                                    background: 'rgba(255,255,255,0.2)',
+                                    border: '1px solid rgba(255,255,255,0.4)',
                                     borderRadius: 8, padding: '8px 16px',
-                                    textDecoration: 'none', color: '#ccd6f6',
-                                    fontSize: 13, fontWeight: 500,
+                                    textDecoration: 'none', color: '#ffffff',
+                                    fontSize: 13, fontWeight: 600,
                                 }}>
-                                    <span>{getContactIcon(link.type)}</span>
                                     {link.label}
                                 </a>
                             ))}
@@ -58,9 +56,9 @@ export default function UmkmShow({ umkm }) {
             </section>
 
             {/* Products */}
-            <section style={{ background: '#fafbff', padding: '40px 24px 60px' }}>
+            <section style={{ background: '#f4fbf7', padding: '40px 24px 60px' }}>
                 <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-                    <h2 style={{ fontSize: 22, fontWeight: 800, color: '#1a1a2e', marginBottom: 24 }}>
+                    <h2 style={{ fontSize: 22, fontWeight: 800, color: '#0f172a', marginBottom: 24 }}>
                         Produk ({umkm.products?.length || 0})
                     </h2>
                     {umkm.products?.length > 0 ? (
@@ -75,12 +73,12 @@ export default function UmkmShow({ umkm }) {
                                     background: '#fff',
                                     borderRadius: 16,
                                     overflow: 'hidden',
-                                    boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
-                                    border: '1px solid rgba(0,0,0,0.06)',
+                                    boxShadow: '0 2px 12px rgba(30,58,138,0.08)',
+                                    border: '1px solid #e2e8f0',
                                 }}>
                                     <div style={{
                                         height: 180,
-                                        background: 'linear-gradient(135deg, #f0f4ff, #e8ecf8)',
+                                        background: 'linear-gradient(135deg, #ede9fe, #f1f5f9)',
                                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                                     }}>
                                         {product.image_url ? (
@@ -88,17 +86,17 @@ export default function UmkmShow({ umkm }) {
                                                 width: '100%', height: '100%', objectFit: 'cover',
                                             }} />
                                         ) : (
-                                            <span style={{ fontSize: 48, opacity: 0.3 }}>📦</span>
+                                            <span style={{ fontSize: 48, opacity: 0.15 }}>—</span>
                                         )}
                                     </div>
                                     <div style={{ padding: 16 }}>
-                                        <div style={{ fontSize: 12, color: '#888', marginBottom: 4 }}>
-                                            {product.category?.icon} {product.category?.name}
+                                        <div style={{ fontSize: 12, color: '#64748b', marginBottom: 4 }}>
+                                            {product.category?.name}
                                         </div>
-                                        <h4 style={{ fontSize: 15, fontWeight: 700, color: '#1a1a2e', marginBottom: 8 }}>
+                                        <h4 style={{ fontSize: 15, fontWeight: 700, color: '#0f172a', marginBottom: 8 }}>
                                             {product.name}
                                         </h4>
-                                        <div style={{ fontSize: 16, fontWeight: 800, color: '#e94560' }}>
+                                        <div style={{ fontSize: 16, fontWeight: 800, color: '#22577a' }}>
                                             {product.formatted_price}
                                         </div>
                                     </div>
@@ -106,7 +104,7 @@ export default function UmkmShow({ umkm }) {
                             ))}
                         </div>
                     ) : (
-                        <div style={{ textAlign: 'center', padding: '40px 0', color: '#888' }}>
+                        <div style={{ textAlign: 'center', padding: '40px 0', color: '#64748b' }}>
                             <p>Belum ada produk yang terdaftar.</p>
                         </div>
                     )}
@@ -114,14 +112,4 @@ export default function UmkmShow({ umkm }) {
             </section>
         </PublicLayout>
     );
-}
-
-function getContactIcon(type) {
-    const icons = {
-        whatsapp: '📱', instagram: '📸', facebook: '👤',
-        shopee: '🛒', tokopedia: '🏪', bukalapak: '🛍️',
-        tiktok: '🎵', gofood: '🍽️', grabfood: '🛵',
-        website: '🌐', other: '🔗',
-    };
-    return icons[type] || '🔗';
 }

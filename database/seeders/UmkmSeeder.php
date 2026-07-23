@@ -9,11 +9,8 @@ use Illuminate\Support\Str;
 
 class UmkmSeeder extends Seeder
 {
-    /**
-     * Seed dummy UMKM data for Desa Birowo.
-     */
+
     public function run(): void
     {
-        // Kosongkan untuk production. Data UMKM akan ditambahkan manual via Admin Panel.
     }
 }

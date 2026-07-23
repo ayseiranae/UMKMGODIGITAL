@@ -25,7 +25,7 @@ export default function CategoryForm({ category }) {
             <Head title={isEdit ? 'Edit Kategori' : 'Tambah Kategori'} />
             <div style={{ maxWidth: 600 }}>
                 <Link href="/admin/kategori" style={{ color: '#888', textDecoration: 'none', fontSize: 13, marginBottom: 20, display: 'inline-block' }}>← Kembali</Link>
-                <form onSubmit={handleSubmit} style={{ background: '#fff', borderRadius: 16, padding: 32, boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
+                <form onSubmit={handleSubmit} className="admin-form-card" style={{ background: '#fff', borderRadius: 16, padding: 32, boxShadow: '0 2px 8px rgba(0,0,0,0.06)' }}>
                     <h3 style={{ fontSize: 18, fontWeight: 800, marginBottom: 24, color: '#1a1a2e' }}>{isEdit ? 'Edit Kategori' : 'Tambah Kategori Baru'}</h3>
 
                     <div style={{ display: 'grid', gridTemplateColumns: '1fr 80px', gap: 16 }}>
@@ -75,7 +75,7 @@ function FormField({ label, error, children }) {
         <div style={{ marginBottom: 16 }}>
             <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#333', marginBottom: 6 }}>{label}</label>
             {children}
-            {error && <div style={{ fontSize: 12, color: '#e94560', marginTop: 4 }}>{error}</div>}
+            {error && <div style={{ fontSize: 12, color: '#dc2626', marginTop: 4 }}>{error}</div>}
         </div>
     );
 }
