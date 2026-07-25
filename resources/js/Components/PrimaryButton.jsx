@@ -2,14 +2,32 @@ export default function PrimaryButton({
     className = '',
     disabled,
     children,
+    style = {},
     ...props
 }) {
     return (
         <button
             {...props}
+            style={{
+                background: 'linear-gradient(135deg, #57cc99, #38a3a5)',
+                color: '#fff',
+                padding: '10px 24px',
+                borderRadius: '12px',
+                fontWeight: 700,
+                fontSize: '14px',
+                boxShadow: '0 4px 12px rgba(87,204,153,0.35)',
+                transition: 'all 0.2s ease-in-out',
+                border: 'none',
+                cursor: disabled ? 'not-allowed' : 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                letterSpacing: '0.5px',
+                ...style,
+            }}
             className={
-                `inline-flex items-center rounded-md border border-transparent bg-gray-800 px-4 py-2 text-xs font-semibold uppercase tracking-widest text-white transition duration-150 ease-in-out hover:bg-gray-700 focus:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 active:bg-gray-900 ${
-                    disabled && 'opacity-25'
+                `active:scale-[0.98] hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-[#38a3a5] focus:ring-offset-2 ${
+                    disabled && 'opacity-50'
                 } ` + className
             }
             disabled={disabled}
