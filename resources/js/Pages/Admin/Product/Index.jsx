@@ -20,30 +20,68 @@ export default function ProductIndex({ products, umkms, categories, filters }) {
         <AdminLayout title="Kelola Produk">
             <Head title="Kelola Produk" />
 
+            {/* Filter Bar & Tombol Tambah */}
             <div className="admin-filter-bar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
-                <form onSubmit={handleSearch} style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                    <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
-                        placeholder="Cari produk..." style={{ padding: '10px 16px', borderRadius: 8, border: '1px solid #cbd5e1', fontSize: 14, width: '100%', outline: 'none' }} />
-                    <select value={filters.umkm_id || ''} onChange={(e) => router.get('/admin/produk', { ...filters, umkm_id: e.target.value }, { preserveState: true })}
-                        style={{ padding: '10px 14px', borderRadius: 8, border: '1px solid #cbd5e1', fontSize: 14, outline: 'none' }}>
+                <form onSubmit={handleSearch} style={{ display: 'flex', gap: 8, flexWrap: 'wrap', flex: '1 1 300px', maxWidth: '100%' }}>
+                    <input 
+                        type="text" 
+                        value={search} 
+                        onChange={(e) => setSearch(e.target.value)}
+                        placeholder="Cari produk..." 
+                        style={{ 
+                            padding: '10px 16px', 
+                            borderRadius: 8, 
+                            border: '1px solid #cbd5e1', 
+                            fontSize: 14, 
+                            flex: '1 1 150px',    /* 👈 Fleksibel menyesuaikan ruang */
+                            minWidth: 0,           /* 👈 Mencegah input mendorong layar */
+                            outline: 'none' 
+                        }} 
+                    />
+                    <select 
+                        value={filters.umkm_id || ''} 
+                        onChange={(e) => router.get('/admin/produk', { ...filters, umkm_id: e.target.value }, { preserveState: true })}
+                        style={{ 
+                            padding: '10px 14px', 
+                            borderRadius: 8, 
+                            border: '1px solid #cbd5e1', 
+                            fontSize: 14, 
+                            flex: '1 1 auto',      /* 👈 Dropdown ikut fleksibel di HP */
+                            maxWidth: '100%',
+                            outline: 'none' 
+                        }}>
                         <option value="">Semua UMKM</option>
                         {umkms.map((u) => <option key={u.id} value={u.id}>{u.name}</option>)}
                     </select>
                     <button type="submit" style={{
                         background: '#38a3a5', color: '#fff', padding: '10px 20px',
                         borderRadius: 8, border: 'none', fontWeight: 600, fontSize: 14, cursor: 'pointer',
+                        whiteSpace: 'nowrap',              /* 👈 Mencegah teks terlipat */
+                        flexShrink: 0                      /* 👈 Mencegah tombol menciut */
                     }}>Cari</button>
                 </form>
+
                 <Link href="/admin/produk/create" style={{
                     background: 'linear-gradient(135deg, #22577a 0%, #38a3a5 100%)',
                     color: '#fff', padding: '10px 24px', borderRadius: 8,
                     textDecoration: 'none', fontWeight: 700, fontSize: 14, textAlign: 'center',
                     boxShadow: '0 2px 8px rgba(34,87,122,0.3)',
+                    whiteSpace: 'nowrap',
+                    flex: '1 1 auto',                   /* 👈 Menyesuaikan di layar HP sempit */
+                    maxWidth: '100%'
                 }}>+ Tambah Produk</Link>
             </div>
 
-            <div className="admin-table-wrapper">
-                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            {/* Table Wrapper (Fitur Horizontal Scroll Khusus Tabel) */}
+            <div className="admin-table-wrapper" style={{ 
+                overflowX: 'auto',                      /* 👈 Bikin tabel bisa di-scroll mandiri */
+                maxWidth: '100%', 
+                WebkitOverflowScrolling: 'touch', 
+                borderRadius: 8, 
+                border: '1px solid #e2e8f0',
+                background: '#fff'
+            }}>
+                <table style={{ width: '100%', minWidth: '650px', borderCollapse: 'collapse' }}>
                     <thead>
                         <tr style={{ background: '#f4fbf7', borderBottom: '1px solid #e2e8f0' }}>
                             <th style={thStyle}>Produk</th>
@@ -86,8 +124,9 @@ export default function ProductIndex({ products, umkms, categories, filters }) {
                 {products.data.length === 0 && <div style={{ textAlign: 'center', padding: 40, color: '#64748b' }}>Belum ada produk.</div>}
             </div>
 
+            {/* Pagination */}
             {products.last_page > 1 && (
-                <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 24 }}>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 24, flexWrap: 'wrap' }}>
                     {products.links.map((link, i) => (
                         <Link key={i} href={link.url || '#'} style={{
                             padding: '8px 14px', borderRadius: 8,
@@ -105,5 +144,5 @@ export default function ProductIndex({ products, umkms, categories, filters }) {
     );
 }
 
-const thStyle = { padding: '14px 16px', textAlign: 'left', fontSize: 12, fontWeight: 700, color: '#888', textTransform: 'uppercase' };
+const thStyle = { padding: '14px 16px', textAlign: 'left', fontSize: 12, fontWeight: 700, color: '#888', textTransform: 'uppercase', whiteSpace: 'nowrap' };
 const tdStyle = { padding: '14px 16px', fontSize: 14 };

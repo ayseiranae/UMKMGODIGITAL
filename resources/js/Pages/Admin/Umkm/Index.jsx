@@ -20,29 +20,56 @@ export default function UmkmIndex({ umkms, filters }) {
         <AdminLayout title="Kelola UMKM">
             <Head title="Kelola UMKM" />
 
+            {/* Filter Bar & Tombol Tambah */}
             <div className="admin-filter-bar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
-                <form onSubmit={handleSearch} style={{ display: 'flex', gap: 8 }}>
-                    <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
+                <form onSubmit={handleSearch} style={{ display: 'flex', gap: 8, flex: '1 1 280px', maxWidth: '100%' }}>
+                    <input 
+                        type="text" 
+                        value={search} 
+                        onChange={(e) => setSearch(e.target.value)}
                         placeholder="Cari UMKM..."
-                        style={{ padding: '10px 16px', borderRadius: 8, border: '1px solid #cbd5e1', fontSize: 14, width: '100%', outline: 'none' }}
+                        style={{ 
+                            padding: '10px 16px', 
+                            borderRadius: 8, 
+                            border: '1px solid #cbd5e1', 
+                            fontSize: 14, 
+                            flex: 1,           /* 👈 Bikin input fleksibel */
+                            minWidth: 0,       /* 👈 Mencegah input mendorong layar */
+                            outline: 'none' 
+                        }}
                     />
                     <button type="submit" style={{
                         background: '#38a3a5', color: '#fff', padding: '10px 20px',
                         borderRadius: 8, border: 'none', fontWeight: 600, fontSize: 14, cursor: 'pointer',
-                    }}>Cari</button>
+                        whiteSpace: 'nowrap',  /* 👈 Teks tombol "Cari" tidak terlipat */
+                        flexShrink: 0          /* 👈 Tombol tidak menciut */
+                    }}>
+                        Cari
+                    </button>
                 </form>
                 <Link href="/admin/umkm/create" style={{
                     background: 'linear-gradient(135deg, #22577a 0%, #38a3a5 100%)',
                     color: '#fff', padding: '10px 24px', borderRadius: 8,
-                    textDecoration: 'none', fontWeight: 700, fontSize: 14, textCenter: 'center', textAlign: 'center',
+                    textDecoration: 'none', fontWeight: 700, fontSize: 14, textAlign: 'center',
                     boxShadow: '0 2px 8px rgba(34,87,122,0.3)',
+                    whiteSpace: 'nowrap',
+                    flex: '1 1 auto',       /* 👈 Menyesuaikan di layar HP sempit */
+                    maxWidth: '100%'
                 }}>
                     + Tambah UMKM
                 </Link>
             </div>
 
-            <div className="admin-table-wrapper">
-                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            {/* Table Wrapper (Fitur Scroll Samping Khusus Tabel) */}
+            <div className="admin-table-wrapper" style={{ 
+                overflowX: 'auto',                  /* 👈 Tabel bisa di-scroll mandiri */
+                maxWidth: '100%', 
+                WebkitOverflowScrolling: 'touch', 
+                borderRadius: 8, 
+                border: '1px solid #e2e8f0',
+                background: '#fff'
+            }}>
+                <table style={{ width: '100%', minWidth: '600px', borderCollapse: 'collapse' }}>
                     <thead>
                         <tr style={{ background: '#f4fbf7', borderBottom: '1px solid #e2e8f0' }}>
                             <th style={thStyle}>Nama UMKM</th>
@@ -100,7 +127,7 @@ export default function UmkmIndex({ umkms, filters }) {
 
             {/* Pagination */}
             {umkms.last_page > 1 && (
-                <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 24 }}>
+                <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginTop: 24, flexWrap: 'wrap' }}>
                     {umkms.links.map((link, i) => (
                         <Link key={i} href={link.url || '#'} style={{
                             padding: '8px 14px', borderRadius: 8,
@@ -118,5 +145,5 @@ export default function UmkmIndex({ umkms, filters }) {
     );
 }
 
-const thStyle = { padding: '14px 16px', textAlign: 'left', fontSize: 12, fontWeight: 700, color: '#888', textTransform: 'uppercase' };
+const thStyle = { padding: '14px 16px', textAlign: 'left', fontSize: 12, fontWeight: 700, color: '#888', textTransform: 'uppercase', whiteSpace: 'nowrap' };
 const tdStyle = { padding: '14px 16px', fontSize: 14 };
