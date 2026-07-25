@@ -7,7 +7,7 @@ export default function Home({ featuredProducts, umkms, categories, stats }) {
             <Head title="Beranda — Katalog UMKM Desa Birowo" />
 
             {/* Hero Section */}
-            <section style={{
+            <section className="hero-section" style={{
                 background: 'linear-gradient(135deg, #22577a 0%, #38a3a5 100%)',
                 color: '#fff',
                 padding: '80px 24px 100px',
@@ -316,6 +316,9 @@ export default function Home({ featuredProducts, umkms, categories, stats }) {
 
             <style>{`
                 @media (max-width: 768px) {
+                    .hero-section {
+                        padding: 32px 20px 48px !important;
+                    }
                     .home-section-mobile {
                         padding: 24px 8px !important;
                     }
