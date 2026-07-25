@@ -11,6 +11,7 @@ export default function AdminLayout({ children, title }) {
         { href: '/admin/umkm', label: 'Kelola UMKM', icon: '🏪' },
         { href: '/admin/produk', label: 'Kelola Produk', icon: '📦' },
         { href: '/admin/kategori', label: 'Kategori', icon: '🏷️' },
+        { href: '/admin/pengaturan', label: 'Pengaturan', icon: '⚙️' },
     ];
 
     return (
