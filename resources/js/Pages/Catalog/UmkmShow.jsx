@@ -29,7 +29,7 @@ export default function UmkmShow({ umkm }) {
                                     umkm.address
                                 )}
                             </p>
-                            <p style={{ fontSize: 14, color: '#ffffff', lineHeight: 1.7, maxWidth: 700, opacity: 0.95 }}>
+                            <p style={{ fontSize: 14, color: '#ffffff', lineHeight: 1.7, maxWidth: 700, opacity: 0.95, whiteSpace: 'pre-line' }}>
                                 {umkm.description}
                             </p>
                         </div>

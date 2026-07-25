@@ -207,7 +207,7 @@ export default function PublicLayout({ children }) {
                                 </Link>
                                 {settings.wa_daftar && (
                                     <a href={formatWaUrl(settings.wa_daftar)} target="_blank" rel="noreferrer" style={{ color: '#9ca3af', textDecoration: 'none', fontSize: 14, display: 'inline-flex', alignItems: 'center', gap: 4, transition: 'color 0.2s' }} className="footer-link">
-                                        Daftar UMKM ↗
+                                        Daftarkan UMKM Anda ↗
                                     </a>
                                 )}
                             </div>
