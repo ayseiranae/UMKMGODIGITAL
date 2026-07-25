@@ -93,36 +93,41 @@ export default function Home({ featuredProducts, umkms, categories, stats }) {
             </section>
 
             {/* Stats Section */}
-            <section style={{
+            <section className="home-section-mobile" style={{
                 background: '#f4fbf7',
                 padding: '0 24px',
                 marginTop: 50,
                 marginBottom: 50,
                 position: 'relative',
                 zIndex: 2,
+                boxSizing: 'border-box'
             }}>
                 <div style={{
                     maxWidth: 900,
                     margin: '0 auto',
                     display: 'grid',
                     gridTemplateColumns: 'repeat(3, 1fr)',
-                    gap: 20,
+                    gap: 12, /* 👈 Gap antar kartu diperkecil sedikit */
+                    width: '100%',
+                    boxSizing: 'border-box'
                 }}>
                     {[
                         { label: 'UMKM Terdaftar', value: stats.total_umkm },
                         { label: 'Produk Tersedia', value: stats.total_products },
                         { label: 'Kategori Produk', value: stats.total_categories },
                     ].map((s, i) => (
-                        <div key={i} style={{
+                        <div className="stat-card-item" key={i} style={{
                             background: '#fff',
                             borderRadius: 16,
-                            padding: '28px 24px',
+                            padding: '20px 4px', /* 👈 KUNCI: Padding kiri-kanan jadi 4px biar teks muat */
                             textAlign: 'center',
                             boxShadow: '0 4px 20px rgba(30,58,138,0.08)',
                             border: '1px solid #e2e8f0',
+                            boxSizing: 'border-box',
+                            width: '100%'
                         }}>
-                            <div style={{ fontSize: 32, fontWeight: 900, color: '#0f172a' }}>{s.value}</div>
-                            <div style={{ fontSize: 13, color: '#64748b', fontWeight: 600, marginTop: 4 }}>{s.label}</div>
+                            <div className="stat-card-value" style={{ fontSize: 'clamp(20px, 5vw, 32px)', fontWeight: 900, color: '#0f172a' }}>{s.value}</div>
+                            <div className="stat-card-label" style={{ fontSize: 11, color: '#64748b', fontWeight: 700, marginTop: 4, lineHeight: 1.3 }}>{s.label}</div>
                         </div>
                     ))}
                 </div>

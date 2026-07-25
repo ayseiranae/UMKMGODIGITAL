@@ -30,13 +30,17 @@ export default function ProductIndex({ products, categories, filters }) {
                 </p>
                 <form onSubmit={handleSearch} style={{
                     maxWidth: 540, margin: '0 auto', display: 'flex', gap: 10,
+                    padding: '0 24px',       /* 👈 Tambahan: Jarak aman dari tepi layar kiri-kanan */
+                    boxSizing: 'border-box', /* 👈 Tambahan: Mencegah form melebar keluar batas layar */
                 }}>
                     <input
                         type="text" value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="Cari produk..."
                         style={{
-                            flex: 1, padding: '14px 20px', borderRadius: 12,
+                            flex: 1, 
+                            minWidth: 0,         /* 👈 Tambahan: Menjaga proporsi input di layar HP sempit */
+                            padding: '14px 20px', borderRadius: 12,
                             border: '2px solid rgba(255,255,255,0.8)',
                             background: '#ffffff',
                             color: '#0f172a', fontSize: 14, outline: 'none',
@@ -49,6 +53,8 @@ export default function ProductIndex({ products, categories, filters }) {
                         padding: '14px 28px', borderRadius: 12,
                         border: 'none', fontWeight: 700, fontSize: 14, cursor: 'pointer',
                         boxShadow: '0 4px 15px rgba(87,204,153,0.4)',
+                        flexShrink: 0,           /* 👈 Tambahan: Mencegah tombol mengecil/gepeng */
+                        whiteSpace: 'nowrap',    /* 👈 Tambahan: Mencegah teks "Cari" turun baris */
                     }}>
                         Cari
                     </button>
