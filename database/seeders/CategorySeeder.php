@@ -12,5 +12,15 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
+        $categories = [
+            // Tambahkan kategori di sini jika diperlukan
+        ];
+
+        foreach ($categories as $category) {
+            Category::updateOrCreate(
+                ['slug' => $category['slug']],
+                $category
+            );
+        }
     }
 }
