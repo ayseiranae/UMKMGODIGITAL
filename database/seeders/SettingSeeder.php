@@ -15,7 +15,7 @@ class SettingSeeder extends Seeder
         $defaults = [
             'wa_daftar' => 'https://wa.me/6281234567890',
             'wa_desa' => 'https://wa.me/6281234567890',
-            'email' => 'desa.birowo@gmail.com',
+            'email' => 'umkmdesabirowo@gmail.com',
             'facebook' => 'https://facebook.com/desabirowo',
             'youtube' => 'https://youtube.com/desabirowo',
             'alamat' => 'Desa Birowo, Kec. Binangun, Kabupaten Blitar, Jawa Timur',

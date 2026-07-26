@@ -13,7 +13,7 @@ class AdminSeeder extends Seeder
     public function run(): void
     {
         User::updateOrCreate(
-            ['email' => 'admin@birowo.desa.id'],
+            ['email' => 'umkmdesabirowo@gmail.com'],
             [
                 'name' => 'Admin Desa Birowo',
                 'password' => bcrypt('admin123'),
@@ -23,3 +23,4 @@ class AdminSeeder extends Seeder
         );
     }
 }
+    

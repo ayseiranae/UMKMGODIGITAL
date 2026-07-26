@@ -47,7 +47,7 @@ export default function SettingEdit({ settings }) {
                         {/* Email Desa */}
                         <FormField label="Email Desa" error={errors.email} helpText="Masukkan alamat email desa">
                             <InputGroup prefix="mailto:">
-                                <input type="text" value={data.email} onChange={(e) => setData('email', e.target.value)} style={inputInner} placeholder="desa.birowo@gmail.com" />
+                                <input type="text" value={data.email} onChange={(e) => setData('email', e.target.value)} style={inputInner} placeholder="umkmdesabirowo@gmail.com" />
                             </InputGroup>
                         </FormField>
                     </div>
