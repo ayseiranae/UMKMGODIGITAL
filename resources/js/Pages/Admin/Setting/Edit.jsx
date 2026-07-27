@@ -8,6 +8,8 @@ export default function SettingEdit({ settings }) {
         email: settings.email || '',
         facebook: settings.facebook || '',
         youtube: settings.youtube || '',
+        tiktok: settings.tiktok || '',
+        instagram: settings.instagram || '',
         alamat: settings.alamat || '',
     });
 
@@ -61,9 +63,23 @@ export default function SettingEdit({ settings }) {
                         </FormField>
 
                         {/* YouTube Desa */}
-                        <FormField label="YouTube Desa" error={errors.youtube} helpText="Masukkan handle/nama channel (Contoh: desabirowo)">
-                            <InputGroup prefix="youtube.com/@">
-                                <input type="text" value={data.youtube} onChange={(e) => setData('youtube', e.target.value)} style={inputInner} placeholder="desabirowo" />
+                        <FormField label="YouTube Desa" error={errors.youtube} helpText="Masukkan URL/Link YouTube">
+                            <InputGroup prefix="youtube.com/">
+                                <input type="text" value={data.youtube} onChange={(e) => setData('youtube', e.target.value)} style={inputInner} placeholder="https://youtube.com/..." />
+                            </InputGroup>
+                        </FormField>
+
+                        {/* TikTok Desa */}
+                        <FormField label="TikTok Desa" error={errors.tiktok} helpText="Masukkan URL/Link TikTok">
+                            <InputGroup prefix="tiktok.com/">
+                                <input type="text" value={data.tiktok} onChange={(e) => setData('tiktok', e.target.value)} style={inputInner} placeholder="https://tiktok.com/@..." />
+                            </InputGroup>
+                        </FormField>
+
+                        {/* Instagram Desa */}
+                        <FormField label="Instagram Desa" error={errors.instagram} helpText="Masukkan URL/Link Instagram">
+                            <InputGroup prefix="instagram.com/">
+                                <input type="text" value={data.instagram} onChange={(e) => setData('instagram', e.target.value)} style={inputInner} placeholder="https://instagram.com/..." />
                             </InputGroup>
                         </FormField>
                     </div>

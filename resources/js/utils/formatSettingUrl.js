@@ -50,3 +50,27 @@ export function formatMailtoUrl(val) {
     if (trimmed.startsWith('mailto:')) return trimmed;
     return `mailto:${trimmed}`;
 }
+
+/**
+ * Normalize a TikTok value → https://tiktok.com/@username
+ */
+export function formatTiktokUrl(val) {
+    if (!val) return '';
+    const trimmed = val.trim();
+    if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) return trimmed;
+    if (trimmed.includes('tiktok.com')) return `https://${trimmed}`;
+    const handle = trimmed.replace(/^@/, '');
+    return `https://tiktok.com/@${handle}`;
+}
+
+/**
+ * Normalize an Instagram value → https://instagram.com/username
+ */
+export function formatInstagramUrl(val) {
+    if (!val) return '';
+    const trimmed = val.trim();
+    if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) return trimmed;
+    if (trimmed.includes('instagram.com')) return `https://${trimmed}`;
+    const handle = trimmed.replace(/^@/, '');
+    return `https://instagram.com/${handle}`;
+}

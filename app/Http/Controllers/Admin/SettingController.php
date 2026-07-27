@@ -30,6 +30,8 @@ class SettingController extends Controller
             'email' => 'nullable|string',
             'facebook' => 'nullable|string',
             'youtube' => 'nullable|string',
+            'tiktok' => 'nullable|string',
+            'instagram' => 'nullable|string',
             'alamat' => 'nullable|string',
         ]);
 
