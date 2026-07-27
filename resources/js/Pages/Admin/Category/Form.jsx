@@ -55,10 +55,11 @@ export default function CategoryForm({ category }) {
 
                     <div style={{ display: 'flex', gap: 12, marginTop: 8 }}>
                         <button type="submit" disabled={processing} style={{
-                            background: processing ? '#ccc' : 'linear-gradient(135deg, #845ec2, #6c3ea1)',
+                            background: processing ? '#ccc' : 'linear-gradient(135deg, #22577a 0%, #38a3a5 100%)',
+                            boxShadow: processing ? 'none' : '0 2px 8px rgba(34,87,122,0.3)',
                             color: '#fff', padding: '12px 32px', borderRadius: 10,
                             border: 'none', fontWeight: 700, fontSize: 14, cursor: 'pointer',
-                        }}>{processing ? 'Menyimpan...' : (isEdit ? 'Simpan' : 'Tambah Kategori')}</button>
+                        }}>{processing ? 'Menyimpan...' : (isEdit ? 'Simpan Perubahan' : 'Simpan')}</button>
                         <Link href="/admin/kategori" style={{
                             background: '#f0f0f0', color: '#333', padding: '12px 24px',
                             borderRadius: 10, textDecoration: 'none', fontWeight: 600, fontSize: 14,
