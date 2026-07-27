@@ -23,21 +23,42 @@ export default function ProductIndex({ products, umkms, categories, filters }) {
             {/* Filter Bar & Tombol Tambah */}
             <div className="admin-filter-bar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
                 <form onSubmit={handleSearch} style={{ display: 'flex', gap: 8, flexWrap: 'wrap', flex: '1 1 300px', maxWidth: '100%' }}>
-                    <input 
-                        type="text" 
-                        value={search} 
-                        onChange={(e) => setSearch(e.target.value)}
-                        placeholder="Cari produk..." 
-                        style={{ 
-                            padding: '10px 16px', 
-                            borderRadius: 8, 
-                            border: '1px solid #cbd5e1', 
-                            fontSize: 14, 
-                            flex: '1 1 150px',    /* 👈 Fleksibel menyesuaikan ruang */
-                            minWidth: 0,           /* 👈 Mencegah input mendorong layar */
-                            outline: 'none' 
-                        }} 
-                    />
+                    <div style={{ position: 'relative', flex: '1 1 150px', minWidth: 0, display: 'flex', alignItems: 'center' }}>
+                        <input 
+                            type="text" 
+                            value={search} 
+                            onChange={(e) => setSearch(e.target.value)}
+                            placeholder="Cari produk..." 
+                            style={{ 
+                                width: '100%',
+                                padding: '10px 32px 10px 16px', 
+                                borderRadius: 8, 
+                                border: '1px solid #cbd5e1', 
+                                fontSize: 14, 
+                                outline: 'none',
+                                boxSizing: 'border-box'
+                            }} 
+                        />
+                        {search && (
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setSearch('');
+                                    router.get('/admin/produk', { search: '', umkm_id: filters.umkm_id, category_id: filters.category_id }, { preserveState: true });
+                                }}
+                                style={{
+                                    position: 'absolute', right: 8,
+                                    background: '#e2e8f0', color: '#64748b',
+                                    border: 'none', borderRadius: '50%',
+                                    width: 18, height: 18, fontSize: 11, fontWeight: 700,
+                                    cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    padding: 0,
+                                }}
+                            >
+                                ✕
+                            </button>
+                        )}
+                    </div>
                     <select 
                         value={filters.umkm_id || ''} 
                         onChange={(e) => router.get('/admin/produk', { ...filters, umkm_id: e.target.value }, { preserveState: true })}
@@ -110,11 +131,9 @@ export default function ProductIndex({ products, umkms, categories, filters }) {
                                     }}>{product.is_active ? 'Aktif' : 'Nonaktif'}</span>
                                 </td>
                                 <td style={tdStyle}>
-                                    <div style={{ display: 'flex', gap: 8 }}>
-                                        <Link href={`/admin/produk/${product.id}/edit`} style={{ color: '#155724', fontSize: 13, fontWeight: 600, textDecoration: 'none' }}>Edit</Link>
-                                        <button onClick={() => handleDelete(product.id, product.name)} style={{
-                                            color: '#dc2626', fontSize: 13, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer',
-                                        }}>Hapus</button>
+                                    <div style={{ display: 'flex', gap: 6, flexWrap: 'nowrap' }}>
+                                        <Link href={`/admin/produk/${product.id}/edit`} className="admin-btn-edit">Edit</Link>
+                                        <button onClick={() => handleDelete(product.id, product.name)} className="admin-btn-delete">Hapus</button>
                                     </div>
                                 </td>
                             </tr>

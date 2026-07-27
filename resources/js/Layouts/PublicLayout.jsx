@@ -328,9 +328,33 @@ export default function PublicLayout({ children }) {
                     color: #1877f2 !important;
                     border-color: rgba(24, 119, 242, 0.3) !important;
                 }
-                .footer-icon-yt:hover {
-                    color: #ff0000 !important;
-                    border-color: rgba(255, 0, 0, 0.3) !important;
+                .product-card-item, .umkm-card-item, .category-card-item {
+                    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease !important;
+                }
+                .product-card-item:hover, .umkm-card-item:hover {
+                    transform: translateY(-5px) !important;
+                    box-shadow: 0 12px 28px rgba(34, 87, 122, 0.16) !important;
+                    border-color: #38a3a5 !important;
+                }
+                .category-card-item:hover {
+                    transform: translateY(-3px) !important;
+                    box-shadow: 0 8px 20px rgba(34, 87, 122, 0.12) !important;
+                    border-color: #38a3a5 !important;
+                }
+                .product-card-img-box img, .umkm-card-photo-box img {
+                    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+                }
+                .product-card-item:hover .product-card-img-box img, .umkm-card-item:hover .umkm-card-photo-box img {
+                    transform: scale(1.06) !important;
+                }
+                button {
+                    transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease !important;
+                }
+                button:hover:not(:disabled) {
+                    transform: translateY(-1px);
+                }
+                button:active:not(:disabled) {
+                    transform: translateY(0);
                 }
             `}</style>
         </div>

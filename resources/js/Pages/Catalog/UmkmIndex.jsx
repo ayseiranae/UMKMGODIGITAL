@@ -28,25 +28,46 @@ export default function UmkmIndex({ umkms, filters }) {
                 <form onSubmit={handleSearch} style={{
                     maxWidth: 540, margin: '0 auto',
                     display: 'flex', gap: 10,
-                    padding: '0 24px',        /* 👈 Tambahan: Memberi jarak tepi di HP */
-                    boxSizing: 'border-box',  /* 👈 Tambahan: Mencegah form melebar keluar layar */
+                    padding: '0 24px',
+                    boxSizing: 'border-box',
                 }}>
-                    <input
-                        type="text"
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)}
-                        placeholder="Cari UMKM..."
-                        style={{
-                            flex: 1, 
-                            minWidth: 0,      /* 👈 Tambahan: Mencegah input merusak grid/flex di HP */
-                            padding: '14px 20px',
-                            borderRadius: 12, border: '2px solid rgba(255,255,255,0.8)',
-                            background: '#ffffff',
-                            color: '#0f172a', fontSize: 14,
-                            outline: 'none',
-                            boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
-                        }}
-                    />
+                    <div style={{ position: 'relative', flex: 1, minWidth: 0, display: 'flex', alignItems: 'center' }}>
+                        <input
+                            type="text"
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            placeholder="Cari UMKM..."
+                            style={{
+                                width: '100%',
+                                padding: '14px 40px 14px 20px',
+                                borderRadius: 12, border: '2px solid rgba(255,255,255,0.8)',
+                                background: '#ffffff',
+                                color: '#0f172a', fontSize: 14,
+                                outline: 'none',
+                                boxShadow: '0 4px 15px rgba(0,0,0,0.1)',
+                                boxSizing: 'border-box',
+                            }}
+                        />
+                        {search && (
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setSearch('');
+                                    router.get('/umkm', { search: '' }, { preserveState: true });
+                                }}
+                                style={{
+                                    position: 'absolute', right: 12,
+                                    background: '#e2e8f0', color: '#64748b',
+                                    border: 'none', borderRadius: '50%',
+                                    width: 22, height: 22, fontSize: 12, fontWeight: 700,
+                                    cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    padding: 0,
+                                }}
+                            >
+                                ✕
+                            </button>
+                        )}
+                    </div>
                     <button type="submit" style={{
                         background: 'linear-gradient(135deg, #57cc99, #38a3a5)',
                         color: '#ffffff',
@@ -54,8 +75,8 @@ export default function UmkmIndex({ umkms, filters }) {
                         border: 'none', fontWeight: 700, fontSize: 14,
                         cursor: 'pointer',
                         boxShadow: '0 4px 15px rgba(87,204,153,0.4)',
-                        flexShrink: 0,        /* 👈 Tambahan: Mencegah tombol ikut mengecil */
-                        whiteSpace: 'nowrap', /* 👈 Tambahan: Mencegah teks "Cari" turun ke baris baru */
+                        flexShrink: 0,
+                        whiteSpace: 'nowrap',
                     }}>
                         Cari
                     </button>

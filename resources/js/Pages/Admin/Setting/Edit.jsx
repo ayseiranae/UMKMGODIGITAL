@@ -95,7 +95,7 @@ export default function SettingEdit({ settings }) {
                             color: '#fff', padding: '12px 32px', borderRadius: 10,
                             border: 'none', fontWeight: 700, fontSize: 14, cursor: 'pointer',
                         }}>
-                            {processing ? 'Menyimpan...' : 'Simpan Perubahan'}
+                            {processing ? 'Menyimpan...' : 'Simpan Pengaturan'}
                         </button>
                     </div>
                 </form>

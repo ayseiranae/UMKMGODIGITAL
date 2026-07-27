@@ -23,21 +23,42 @@ export default function UmkmIndex({ umkms, filters }) {
             {/* Filter Bar & Tombol Tambah */}
             <div className="admin-filter-bar" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24, flexWrap: 'wrap', gap: 12 }}>
                 <form onSubmit={handleSearch} style={{ display: 'flex', gap: 8, flex: '1 1 280px', maxWidth: '100%' }}>
-                    <input 
-                        type="text" 
-                        value={search} 
-                        onChange={(e) => setSearch(e.target.value)}
-                        placeholder="Cari UMKM..."
-                        style={{ 
-                            padding: '10px 16px', 
-                            borderRadius: 8, 
-                            border: '1px solid #cbd5e1', 
-                            fontSize: 14, 
-                            flex: 1,           /* 👈 Bikin input fleksibel */
-                            minWidth: 0,       /* 👈 Mencegah input mendorong layar */
-                            outline: 'none' 
-                        }}
-                    />
+                    <div style={{ position: 'relative', flex: 1, minWidth: 0, display: 'flex', alignItems: 'center' }}>
+                        <input 
+                            type="text" 
+                            value={search} 
+                            onChange={(e) => setSearch(e.target.value)}
+                            placeholder="Cari UMKM..."
+                            style={{ 
+                                width: '100%',
+                                padding: '10px 32px 10px 16px', 
+                                borderRadius: 8, 
+                                border: '1px solid #cbd5e1', 
+                                fontSize: 14, 
+                                outline: 'none',
+                                boxSizing: 'border-box'
+                            }}
+                        />
+                        {search && (
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setSearch('');
+                                    router.get('/admin/umkm', { search: '' }, { preserveState: true });
+                                }}
+                                style={{
+                                    position: 'absolute', right: 8,
+                                    background: '#e2e8f0', color: '#64748b',
+                                    border: 'none', borderRadius: '50%',
+                                    width: 18, height: 18, fontSize: 11, fontWeight: 700,
+                                    cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    padding: 0,
+                                }}
+                            >
+                                ✕
+                            </button>
+                        )}
+                    </div>
                     <button type="submit" style={{
                         background: '#38a3a5', color: '#fff', padding: '10px 20px',
                         borderRadius: 8, border: 'none', fontWeight: 600, fontSize: 14, cursor: 'pointer',
@@ -103,14 +124,9 @@ export default function UmkmIndex({ umkms, filters }) {
                                     </span>
                                 </td>
                                 <td style={tdStyle}>
-                                    <div style={{ display: 'flex', gap: 8 }}>
-                                        <Link href={`/admin/umkm/${umkm.id}/edit`} style={{
-                                            color: '#155724', fontSize: 13, fontWeight: 600, textDecoration: 'none',
-                                        }}>Edit</Link>
-                                        <button onClick={() => handleDelete(umkm.id, umkm.name)} style={{
-                                            color: '#dc2626', fontSize: 13, fontWeight: 600,
-                                            background: 'none', border: 'none', cursor: 'pointer',
-                                        }}>Hapus</button>
+                                    <div style={{ display: 'flex', gap: 6, flexWrap: 'nowrap' }}>
+                                        <Link href={`/admin/umkm/${umkm.id}/edit`} className="admin-btn-edit">Edit</Link>
+                                        <button onClick={() => handleDelete(umkm.id, umkm.name)} className="admin-btn-delete">Hapus</button>
                                     </div>
                                 </td>
                             </tr>

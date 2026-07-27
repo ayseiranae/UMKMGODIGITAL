@@ -196,17 +196,72 @@ export default function AdminLayout({ children, title }) {
                         border-radius: 12px !important;
                     }
                     .admin-filter-bar {
-                        flex-direction: column !important;
-                        align-items: stretch !important;
+                        gap: 8px !important;
+                        margin-bottom: 16px !important;
                     }
                     .admin-filter-bar form {
-                        flex-direction: column !important;
+                        display: flex !important;
+                        flex-direction: row !important;
+                        flex-wrap: wrap !important;
+                        gap: 6px !important;
                         width: 100% !important;
                     }
-                    .admin-filter-bar input, .admin-filter-bar select, .admin-filter-bar button, .admin-filter-bar a {
+                    .admin-filter-bar input, .admin-filter-bar select {
+                        padding: 8px 12px !important;
+                        font-size: 13px !important;
+                        border-radius: 8px !important;
+                    }
+                    .admin-filter-bar input {
+                        padding-right: 32px !important;
+                    }
+                    .admin-filter-bar form button[type="submit"] {
+                        padding: 8px 16px !important;
+                        font-size: 13px !important;
+                        width: auto !important;
+                        flex-shrink: 0 !important;
+                        border-radius: 8px !important;
+                    }
+                    .admin-filter-bar > a {
                         width: 100% !important;
+                        padding: 10px 16px !important;
+                        font-size: 13px !important;
                     }
                 }
+
+                button, 
+                .admin-filter-bar a, 
+                .admin-form-card a,
+                a[href*="/create"], 
+                .admin-btn, 
+                .admin-btn-action {
+                    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.15s ease !important;
+                }
+                button:hover:not(:disabled), 
+                .admin-filter-bar a:hover, 
+                .admin-form-card a:hover,
+                a[href*="/create"]:hover, 
+                .admin-btn:hover, 
+                .admin-btn-action:hover {
+                    transform: translateY(-2px) !important;
+                    box-shadow: 0 6px 16px rgba(34,87,122,0.35) !important;
+                }
+                button:active:not(:disabled), 
+                .admin-filter-bar a:active, 
+                .admin-form-card a:active,
+                a[href*="/create"]:active, 
+                .admin-btn:active, 
+                .admin-btn-action:active {
+                    transform: translateY(0) !important;
+                    box-shadow: 0 2px 6px rgba(34,87,122,0.2) !important;
+                }
+                .admin-btn-edit {
+                    background: #e0f2fe; color: #0284c7; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+                }
+                .admin-btn-edit:hover { background: #0284c7; color: #fff; transform: translateY(-1px) !important; box-shadow: 0 3px 8px rgba(2,132,199,0.3) !important; }
+                .admin-btn-delete {
+                    background: #fee2e2; color: #dc2626; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 4px;
+                }
+                .admin-btn-delete:hover { background: #dc2626; color: #fff; transform: translateY(-1px) !important; box-shadow: 0 3px 8px rgba(220,38,38,0.3) !important; }
             `}</style>
         </div>
     );

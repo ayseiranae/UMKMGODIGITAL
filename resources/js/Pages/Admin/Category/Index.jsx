@@ -52,11 +52,9 @@ export default function CategoryIndex({ categories }) {
                                     }}>{cat.is_active ? 'Aktif' : 'Nonaktif'}</span>
                                 </td>
                                 <td style={tdStyle}>
-                                    <div style={{ display: 'flex', gap: 8 }}>
-                                        <Link href={`/admin/kategori/${cat.id}/edit`} style={{ color: '#155724', fontSize: 13, fontWeight: 600, textDecoration: 'none' }}>Edit</Link>
-                                        <button onClick={() => handleDelete(cat.id, cat.name)} style={{
-                                            color: '#dc2626', fontSize: 13, fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer',
-                                        }}>Hapus</button>
+                                    <div style={{ display: 'flex', gap: 6, flexWrap: 'nowrap' }}>
+                                        <Link href={`/admin/kategori/${cat.id}/edit`} className="admin-btn-edit">Edit</Link>
+                                        <button onClick={() => handleDelete(cat.id, cat.name)} className="admin-btn-delete">Hapus</button>
                                     </div>
                                 </td>
                             </tr>
